@@ -5,24 +5,44 @@ import os
 
 
 apps = []
+labels = []
 
 
 class Controller:
 
     def add_app(self):
 
-        x = [widget.destroy() for widget in frame.winfo_children()]
+        delete_redudance = [widget.destroy() for widget in frame.winfo_children()]
         file_name = filedialog.askopenfilename(initialdir='/', title="select an app",
                                                filetypes=(('executables', '*.app'), ("all files", "*.*")))
         if file_name != '':
             apps.append(file_name)
         print(file_name)
-        for app in apps:
-            label = tk.Label(frame, text=app)
-            label.pack()
+        controller.refresh_list()
 
     def run_apps(self):
-        x = [os.system("open "+app) for app in apps ]
+        open_app = [os.system("open "+app) for app in apps]
+
+    # def remove_app(self):
+    #     apps.remove(app)
+    #     controller.refresh_list()
+    def clear(self):
+        apps.clear()
+        clearing_labels = [label.destroy() for label in labels]
+
+    def refresh_list(self):
+        
+        # global label
+        if len(apps) != 0:
+            for app in apps:
+                label = tk.Label(frame, text=app)
+                label.pack()
+                labels.append(label)
+
+                # item_btn = tk.Button(master=frame, text='x', padx=10, pady=5, fg='black',
+                #                      command=lambda: apps.remove(app))
+                # item_btn.pack()
+
 
 controller = Controller()
 root = tk.Tk()
@@ -44,4 +64,7 @@ open_file.pack()
 
 run_app = tk.Button(master=root, text='run apps', padx=10, pady=5, fg='black', command=controller.run_apps)
 run_app.pack()
+
+clear_apps = tk.Button(master=root, text='clear', padx=10, pady=5, fg='black', command=controller.clear)
+clear_apps.pack()
 root.mainloop()
