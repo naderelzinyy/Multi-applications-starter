@@ -1,17 +1,21 @@
 
-from controllers import *
 import tkinter as tk
 from tkinter import filedialog, Text
 import os
 
 
+apps = []
+
+
 class Controller:
 
     def add_app(self):
-        apps = []
+
+        x = [widget.destroy() for widget in frame.winfo_children()]
         file_name = filedialog.askopenfilename(initialdir='/', title="select an app",
                                                filetypes=(('executables', '*.app'), ("all files", "*.*")))
-        apps.append(file_name)
+        if file_name != '':
+            apps.append(file_name)
         print(file_name)
         for app in apps:
             label = tk.Label(frame, text=app)
