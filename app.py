@@ -23,22 +23,20 @@ class Controller:
     def run_apps(self):
         open_app = [os.system("open "+app) for app in apps]
 
-    # def remove_app(self):
-    #     apps.remove(app)
-    #     controller.refresh_list()
+
     def clear(self):
         apps.clear()
         clearing_labels = [label.destroy() for label in labels]
 
     def refresh_list(self):
-        
-        # global label
+
         if len(apps) != 0:
             for app in apps:
                 label = tk.Label(frame, text=app)
                 label.pack()
                 labels.append(label)
 
+                # Delete Button
                 # item_btn = tk.Button(master=frame, text='x', padx=10, pady=5, fg='black',
                 #                      command=lambda: apps.remove(app))
                 # item_btn.pack()
