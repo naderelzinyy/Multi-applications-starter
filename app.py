@@ -21,6 +21,8 @@ class Controller:
             label = tk.Label(frame, text=app)
             label.pack()
 
+    def run_apps(self):
+        x = [os.system("open "+app) for app in apps ]
 
 controller = Controller()
 root = tk.Tk()
@@ -40,6 +42,6 @@ frame.place(relwidth=0.8, relheight=0.8, relx=0.1, rely=0.1)
 open_file = tk.Button(master=root, text='open file', padx=10, pady=5, fg='black', command=controller.add_app)
 open_file.pack()
 
-run_app = tk.Button(master=root, text='run apps', padx=10, pady=5, fg='black', command=None)
+run_app = tk.Button(master=root, text='run apps', padx=10, pady=5, fg='black', command=controller.run_apps)
 run_app.pack()
 root.mainloop()
