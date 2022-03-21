@@ -12,7 +12,9 @@ class Controller:
 
     def add_app(self):
 
-        delete_redudance = [widget.destroy() for widget in frame.winfo_children()]
+        # delete_redudance = [widget.destroy() for widget in frame.winfo_children()]
+        for widget in frame.winfo_children():
+            widget.destroy()
         file_name = filedialog.askopenfilename(initialdir='/applications', title="select an app",
                                                filetypes=(('executables', '*.app'), ("all files", "*.*")))
         if file_name != '':
@@ -21,7 +23,9 @@ class Controller:
         controller.refresh_list()
 
     def run_apps(self):
-        open_app = [os.system("open "+app) for app in apps]
+        # open_app = [os.system("open "+app) for app in apps]
+        for app in apps:
+            os.system("open "+app)
 
 
     def clear(self):
