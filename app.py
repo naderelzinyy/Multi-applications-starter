@@ -13,7 +13,7 @@ class Controller:
     def add_app(self):
 
         delete_redudance = [widget.destroy() for widget in frame.winfo_children()]
-        file_name = filedialog.askopenfilename(initialdir='/', title="select an app",
+        file_name = filedialog.askopenfilename(initialdir='/applications', title="select an app",
                                                filetypes=(('executables', '*.app'), ("all files", "*.*")))
         if file_name != '':
             apps.append(file_name)
@@ -26,7 +26,9 @@ class Controller:
 
     def clear(self):
         apps.clear()
-        clearing_labels = [label.destroy() for label in labels]
+        # clearing_labels = [label.destroy() for label in labels]
+        for label in labels:
+            label.destroy()
 
     def refresh_list(self):
 
